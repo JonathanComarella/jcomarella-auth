@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  postgresauth:
+    image: postgres:latest
+    container_name: postgresauth
+    restart: always
+    environment:
+      POSTGRES_USER: authadmin
+      POSTGRES_PASSWORD: authdb1010@!
+      POSTGRES_DB: jcomarellaauth
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - auth_network
+
+networks:
+  auth_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
